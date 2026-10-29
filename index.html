@@ -51,7 +51,8 @@ header.top nav a:hover{color:var(--accent)}
 
 section.block{padding-block:48px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:18px; scroll-margin-top:12px}
 .label{font-family:var(--data); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)}
-section.block h2{font-size:clamp(26px, 4vw, 34px); font-weight:700; letter-spacing:-.02em}
+section.block.first{border-top:0; padding-top:64px}
+section.block h2,section.block .h2{font-size:clamp(26px, 4vw, 34px); font-weight:700; letter-spacing:-.02em}
 .prose{display:flex; flex-direction:column; gap:1em; max-width:660px}
 
 .cards{display:grid; gap:16px}
@@ -96,15 +97,9 @@ footer{border-top:1px solid var(--rule); padding-block:22px 40px; font-family:va
     <nav aria-label="Peamenüü"><a href="#minust">Minust</a><a href="#varia">Varia</a><a href="#kontakt">Kontakt</a></nav>
   </header>
 
-  <section class="hero">
-    <div class="eyebrow">Andmed · majandus · ühiskond</div>
-    <h1>Margus Rosenstein</h1>
-    <p class="lead">Mind huvitab, mida numbrid räägivad Eesti kohta, kui neid vaadata pikema aja jooksul ja laiemas võrdluses.</p>
-  </section>
-
-  <section class="block" id="minust">
+  <section class="block first" id="minust">
     <div class="label">Minust</div>
-    <h2>Lood numbrite taga</h2>
+    <h1 class="h2">Lood numbrite taga</h1>
     <div class="prose">
       <p>Mulle meeldivad numbrid ja keel, milles nad meiega räägivad. Mind huvitavad nende taga peituvad seosed, lood ja tähendused – sageli just need, mis esmapilgul silma ei paista.</p>
       <p>Minu tee on kulgenud finantsmaailmas. Magistrikraad rahanduses andis mulle tööriistad, kuid päris õppetunnid tulid aastatega, mil olen tegelenud väärtuse hindamise ja ettevõtete ostu- ja müügitehingute nõustamisega.</p>
