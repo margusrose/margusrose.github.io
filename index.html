@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Margus Rosenstein</title>
+<meta name="description" content="Margus Rosenstein – andmed, majandus ja ühiskond. Varia: andmelood ja analüüsid.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Margus Rosenstein">
+<meta property="og:description" content="Andmed, majandus ja ühiskond. Varia: andmelood ja analüüsid.">
+<meta property="og:url" content="https://margusrose.github.io/">
+<meta property="og:image" content="https://margusrose.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='16' text-anchor='middle' fill='white'%3EMR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: üks kitsas veerg; sama tüpograafia ja värvid mis andmelugudel, et sait oleks ühtne. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#0f1d2b; --ink2:#44556a; --muted:#728195; --rule:#d5dde6;
+  --accent:#2a78d6; --accent-soft:rgba(42,120,214,.12);
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Literata',Georgia,'Times New Roman',serif;
+  --data:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root{ --bg:#0d141c; --surface:#141e29; --ink:#e8eef4; --ink2:#b2bfcc; --muted:#8495a6; --rule:#273544; --accent:#3987e5; --accent-soft:rgba(57,135,229,.16); color-scheme:dark } }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-size:18px; line-height:1.62;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); -webkit-font-smoothing:antialiased}
+.wrap{max-width:760px; margin:0 auto}
+a{color:var(--accent); text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance}
+p{margin:0}
+
+header.top{display:flex; justify-content:space-between; align-items:center; gap:12px; padding-block:20px; border-bottom:1px solid var(--rule); font-family:var(--data); font-size:13px}
+header.top .logo{color:var(--ink); text-decoration:none; font-weight:500; letter-spacing:.02em}
+header.top .logo span{color:var(--accent)}
+header.top nav{display:flex; gap:18px; flex-wrap:wrap}
+header.top nav a{color:var(--ink2); text-decoration:none}
+header.top nav a:hover{color:var(--accent)}
+
+.hero{padding-block:72px 40px; display:flex; flex-direction:column; gap:20px}
+.eyebrow{font-family:var(--data); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.hero h1{font-size:clamp(44px, 9vw, 88px); font-weight:800; line-height:.95; letter-spacing:-.035em}
+.hero .lead{font-size:clamp(19px, 2.6vw, 23px); line-height:1.5; color:var(--ink2); max-width:620px}
+
+section.block{padding-block:48px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:18px; scroll-margin-top:12px}
+.label{font-family:var(--data); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)}
+section.block h2{font-size:clamp(26px, 4vw, 34px); font-weight:700; letter-spacing:-.02em}
+.prose{display:flex; flex-direction:column; gap:1em; max-width:660px}
+
+.cards{display:grid; gap:16px}
+.card{display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:20px; align-items:center; background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:20px 22px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s}
+.card:hover{border-color:var(--accent)}
+@media (prefers-reduced-motion: no-preference){ .card:hover{transform:translateY(-2px)} }
+.card .meta{font-family:var(--data); font-size:12px; color:var(--muted); display:flex; gap:10px; flex-wrap:wrap}
+.card h3{font-size:24px; font-weight:700; letter-spacing:-.015em; margin-block:6px 8px; color:var(--ink)}
+.card p{font-size:16px; color:var(--ink2); line-height:1.5}
+.card .go{font-family:var(--data); font-size:13px; color:var(--accent); margin-top:10px; display:inline-block}
+.card svg{width:100%; height:auto; display:block}
+.card .spark-l{stroke:var(--accent); stroke-width:2; fill:none}
+.card .spark-a{fill:var(--accent-soft)}
+.card .spark-t{font-family:var(--data); font-size:10px; fill:var(--muted)}
+@media (max-width:600px){ .card{grid-template-columns:minmax(0,1fr)} .card svg{max-width:320px} }
+
+.contact{display:flex; flex-wrap:wrap; align-items:center; gap:12px}
+.mail{font-family:var(--data); font-size:clamp(16px, 3.4vw, 22px); color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:12px 16px; user-select:all; overflow-wrap:anywhere}
+.btn{font-family:var(--data); font-size:13px; border:1px solid var(--rule); background:var(--surface); color:var(--ink); border-radius:8px; padding:12px 14px; cursor:pointer; text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+.copied{font-family:var(--data); font-size:12px; color:var(--muted)}
+
+footer{border-top:1px solid var(--rule); padding-block:22px 40px; font-family:var(--data); font-size:12px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/">margus<span>.</span>rosenstein</a>
+    <nav aria-label="Peamenüü"><a href="#minust">Minust</a><a href="#varia">Varia</a><a href="#kontakt">Kontakt</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Andmed · majandus · ühiskond</div>
+    <h1>Margus Rosenstein</h1>
+    <p class="lead">Mind huvitab, mida numbrid räägivad Eesti kohta, kui neid vaadata pikema aja jooksul ja laiemas võrdluses.</p>
+  </section>
+
+  <section class="block" id="minust">
+    <div class="label">Minust</div>
+    <h2>Lood numbrite taga</h2>
+    <div class="prose">
+      <p>Tere! Olen Margus Rosenstein. Mulle meeldib võtta mõni suur küsimus, otsida selle kohta avalikud andmed ja vaadata, kas levinud selgitused peavad paika.</p>
+      <p>Varia alla kogun andmelugusid ja analüüse, mida teen omast huvist. Esimene neist uurib, kuidas on Eesti sündimus sajandi jooksul muutunud ja kuidas paistab Eesti maailma taustal.</p>
+    </div>
+  </section>
+
+  <section class="block" id="varia">
+    <div class="label">Varia</div>
+    <h2>Andmelood ja analüüsid</h2>
+    <div class="cards">
+      <a class="card" href="sada-aastat-synde/">
+        <div>
+          <div class="meta"><span>29.10.2026</span><span>Demograafia</span><span>~15 min</span></div>
+          <h3>Sada aastat sünde</h3>
+          <p>1,96 miljonit sündi aastatel 1919–2025: sündimuse langus, emade vanus, viljatusravi ja Eesti võrdlus ülejäänud maailmaga.</p>
+          <span class="go">Loe lugu →</span>
+        </div>
+        <svg viewBox="0 0 320 110" role="img" aria-label="Sündide arv Eestis 1919–2025: tipp 1987, madalaim 2025">
+          <path class="spark-a" d="M0.0,26.1L3.0,22.1L6.0,13.6L9.1,13.0L12.1,12.6L15.1,15.8L18.1,19.2L21.1,20.8L24.2,21.8L27.2,20.5L30.2,23.8L33.2,22.6L36.2,22.5L39.2,21.7L42.3,27.0L45.3,30.1L48.3,28.1L51.3,26.9L54.3,27.0L57.4,26.1L60.4,26.0L63.4,26.3L66.4,22.2L69.4,23.4L72.5,34.6L75.5,37.5L78.5,38.2L81.5,22.8L84.5,11.4L87.5,14.6L90.6,14.6L93.6,19.8L96.6,18.2L99.6,16.9L102.6,20.3L105.7,17.6L108.7,18.0L111.7,21.9L114.7,22.5L117.7,22.2L120.8,21.0L123.8,20.1L126.8,20.0L129.8,20.9L132.8,23.3L135.8,22.1L138.9,24.5L141.9,25.5L144.9,25.4L147.9,21.5L150.9,18.1L154.0,15.4L157.0,13.4L160.0,14.7L163.0,16.5L166.0,15.7L169.1,16.1L172.1,14.5L175.1,13.9L178.1,14.4L181.1,14.3L184.2,13.1L187.2,10.6L190.2,9.9L193.2,6.4L196.2,6.1L199.2,8.2L202.3,6.6L205.3,3.2L208.3,3.3L211.3,5.8L214.3,12.8L217.4,22.8L220.4,27.6L223.4,37.2L226.4,40.9L229.4,43.2L232.5,44.2L235.5,46.5L238.5,47.9L241.5,47.0L244.5,44.8L247.5,46.3L250.6,45.0L253.6,44.9L256.6,41.6L259.6,40.3L262.6,38.5L265.7,35.4L268.7,34.5L271.7,35.4L274.7,35.2L277.7,39.2L280.8,41.3L283.8,43.2L286.8,43.1L289.8,41.9L292.8,41.4L295.8,42.3L298.9,40.3L301.9,41.2L304.9,44.3L307.9,44.1L310.9,49.7L314.0,52.1L317.0,56.5L320.0,58.0 L320,90 L0,90 Z"/>
+          <path class="spark-l" d="M0.0,26.1L3.0,22.1L6.0,13.6L9.1,13.0L12.1,12.6L15.1,15.8L18.1,19.2L21.1,20.8L24.2,21.8L27.2,20.5L30.2,23.8L33.2,22.6L36.2,22.5L39.2,21.7L42.3,27.0L45.3,30.1L48.3,28.1L51.3,26.9L54.3,27.0L57.4,26.1L60.4,26.0L63.4,26.3L66.4,22.2L69.4,23.4L72.5,34.6L75.5,37.5L78.5,38.2L81.5,22.8L84.5,11.4L87.5,14.6L90.6,14.6L93.6,19.8L96.6,18.2L99.6,16.9L102.6,20.3L105.7,17.6L108.7,18.0L111.7,21.9L114.7,22.5L117.7,22.2L120.8,21.0L123.8,20.1L126.8,20.0L129.8,20.9L132.8,23.3L135.8,22.1L138.9,24.5L141.9,25.5L144.9,25.4L147.9,21.5L150.9,18.1L154.0,15.4L157.0,13.4L160.0,14.7L163.0,16.5L166.0,15.7L169.1,16.1L172.1,14.5L175.1,13.9L178.1,14.4L181.1,14.3L184.2,13.1L187.2,10.6L190.2,9.9L193.2,6.4L196.2,6.1L199.2,8.2L202.3,6.6L205.3,3.2L208.3,3.3L211.3,5.8L214.3,12.8L217.4,22.8L220.4,27.6L223.4,37.2L226.4,40.9L229.4,43.2L232.5,44.2L235.5,46.5L238.5,47.9L241.5,47.0L244.5,44.8L247.5,46.3L250.6,45.0L253.6,44.9L256.6,41.6L259.6,40.3L262.6,38.5L265.7,35.4L268.7,34.5L271.7,35.4L274.7,35.2L277.7,39.2L280.8,41.3L283.8,43.2L286.8,43.1L289.8,41.9L292.8,41.4L295.8,42.3L298.9,40.3L301.9,41.2L304.9,44.3L307.9,44.1L310.9,49.7L314.0,52.1L317.0,56.5L320.0,58.0"/>
+          <text class="spark-t" x="0" y="106">1919</text>
+          <text class="spark-t" x="320" y="106" text-anchor="end">2025</text>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="kontakt">
+    <div class="label">Kontakt</div>
+    <h2>Kirjuta mulle</h2>
+    <p class="prose">Küsimused, parandused ja ideed järgmisteks andmelugudeks on teretulnud.</p>
+    <div class="contact">
+      <span class="mail" id="mail">margus.rosenstein@gmail.com</span>
+      <a class="btn primary" href="mailto:margus.rosenstein@gmail.com">Saada e-kiri</a>
+      <button class="btn" type="button" id="copy">Kopeeri aadress</button>
+      <span class="copied" id="copied" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Margus Rosenstein</span><span>margusrose.github.io</span></footer>
+</div>
+<script>
+document.getElementById('copy').addEventListener('click',()=>{
+  const t=document.getElementById('mail').textContent, out=document.getElementById('copied');
+  const done=()=>{ out.textContent='Kopeeritud'; setTimeout(()=>out.textContent='',2000); };
+  if(navigator.clipboard){ navigator.clipboard.writeText(t).then(done).catch(()=>{ const r=document.createRange(); r.selectNodeContents(document.getElementById('mail')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); out.textContent='Vajuta Ctrl+C'; }); }
+});
+</script>
+</body>
+</html>
