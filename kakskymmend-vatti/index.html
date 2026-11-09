@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kakskümmend vatti">
+<meta property="og:description" content="Inimaju vs tehisaru: kui palju maksab ja kui palju energiat kulub ühe inimese kasvatamisele ja harimisele ning ühe tippmudeli treenimisele – ja mis maksab 1000 sõna.">
+<meta property="og:url" content="https://margusrose.github.io/kakskymmend-vatti/">
+<meta property="og:image" content="https://margusrose.github.io/kakskymmend-vatti/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='16' text-anchor='middle' fill='white'%3EMR%3C/text%3E%3C/svg%3E">
+<title>Kakskümmend vatti</title>
+<meta name="description" content="Andmelugu inimaju ja tehisaru võrdlusest: võimsus, õppimise energia ja hind, andmetõhusus, töö hind 1000 sõna kohta ja amortisatsioon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Kaks pearaamatut kõrvuti: aju (roosa) ja tehisaru (sinine). Kuld = järeldus. */
+:root{
+  --bg:#F1F2EF; --paper:#FBFBF9; --fg:#16181B; --muted:#5C6168; --line:#D5D8D2; --soft:#E6E8E3;
+  --gold:#9A6B05; --gold-soft:#F3E6C4; --brain:#B23F6A; --brain-soft:#F4DCE5; --ai:#2C66C9; --ai-soft:#DCE6F7; --neu:#7A8088; --pos:#2F7D4F; --neg:#B23A2E;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121416; --paper:#1A1D20; --fg:#E9EAE6; --muted:#A2A8AE; --line:#33383D; --soft:#24282C;
+  --gold:#E2B347; --gold-soft:#3A3120; --brain:#EE7FA6; --brain-soft:#3A2230; --ai:#6C9BF0; --ai-soft:#1D2A40; --neu:#9AA0A7; --pos:#5BBE84; --neg:#EE7266; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121416; --paper:#1A1D20; --fg:#E9EAE6; --muted:#A2A8AE; --line:#33383D; --soft:#24282C;
+  --gold:#E2B347; --gold-soft:#3A3120; --brain:#EE7FA6; --brain-soft:#3A2230; --ai:#6C9BF0; --ai-soft:#1D2A40; --neu:#9AA0A7; --pos:#5BBE84; --neg:#EE7266; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.6;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 80px}
+.col{max-width:70ch}
+a{color:var(--ai)}
+nav.top{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;color:var(--muted);align-items:center}
+nav.top a{color:var(--muted);text-decoration:none}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,78px);line-height:1.02;margin:22px 0 14px;letter-spacing:-.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--brain)}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1.15;margin:6px 0 16px;text-wrap:balance}
+h3{font-family:var(--body);font-weight:700;font-size:17px;margin:30px 0 6px;letter-spacing:.01em}
+.lede{font-size:21px;line-height:1.5;max-width:62ch}
+.meta{font-size:14px;color:var(--muted);margin-top:14px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:flex;gap:10px;align-items:baseline}
+.eyebrow b{font-weight:600;color:var(--fg)}
+section{padding-top:64px;scroll-margin-top:16px}
+.b{color:var(--brain);font-weight:600} .a{color:var(--ai);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:30px 0 8px}
+.kpi{background:var(--paper);padding:16px 16px 14px;min-width:0}
+.kpi .n{font-family:var(--display);font-size:clamp(28px,3.4vw,40px);line-height:1;color:var(--fg)}
+.kpi .n small{font-size:.5em;color:var(--muted)}
+.kpi .l{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.35}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 18px;margin:30px 0 0;padding:0;list-style:none;font-size:15px}
+.toc a{text-decoration:none;color:var(--fg);display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+.toc a span{font-family:var(--mono);color:var(--gold);font-size:13px;min-width:22px;padding-top:2px}
+.callout{border-left:3px solid var(--gold);background:var(--paper);padding:14px 18px;margin:22px 0;max-width:70ch;font-size:16.5px}
+.callout .t{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:600}
+.callout.warn{border-color:var(--neg)} .callout.warn .t{color:var(--neg)}
+.callout.est{border-color:var(--ai)} .callout.est .t{color:var(--ai)}
+.callout.dis{border-color:var(--brain)} .callout.dis .t{color:var(--brain)}
+.callout p{margin:.3em 0}
+.fig{background:var(--paper);border:1px solid var(--line);padding:18px 18px 12px;margin:24px 0}
+.fig h4{margin:0 0 2px;font-size:16px;font-weight:700}
+.fig .sub{font-size:14px;color:var(--muted);margin-bottom:8px}
+.fig .src{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto;font-family:var(--body)}
+.chart.wide svg{min-width:620px}
+svg text{fill:var(--muted);font-size:12px}
+svg .ax line,svg .ax path{stroke:var(--line)}
+svg .grid line{stroke:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--muted);margin:6px 0}
+.legend i{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px;border-radius:2px}
+.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:4px 0 8px}
+.seg button{font:inherit;font-size:13.5px;background:transparent;color:var(--muted);border:0;padding:5px 13px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+@media (max-width:640px){.ledger{grid-template-columns:1fr}}
+.led{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--rc);padding:14px 16px;min-width:0}
+.led .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--rc);font-weight:600}
+.led .h{font-family:var(--display);font-size:22px;margin:2px 0 8px}
+.led dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:15px}
+.led dt{color:var(--muted)} .led dd{margin:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+td.n,th.n{text-align:right;font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+.tbl{overflow-x:auto} .tbl table{min-width:600px}
+.ctrl{display:grid;gap:6px;max-width:560px;margin:8px 0 6px}
+.ctrl label{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:14.5px}
+.ctrl output{font-family:var(--mono);font-size:13.5px;color:var(--gold);font-weight:600}
+.ctrl input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--gold)}
+.readout{font-size:15.5px;background:var(--bg);border:1px solid var(--line);padding:10px 14px;margin-top:8px}
+.readout b{font-family:var(--mono);font-size:14px}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:13px;line-height:1.4;padding:7px 10px;border-radius:4px;max-width:280px;z-index:20;opacity:0;transition:opacity .12s}
+.tip b{font-weight:700}
+.list{margin:.4em 0 0;padding-left:1.1em}
+.list li{margin:.35em 0}
+.truths{counter-reset:t;list-style:none;padding:0;margin:20px 0;max-width:72ch}
+.truths li{counter-increment:t;position:relative;padding:12px 0 12px 48px;border-bottom:1px solid var(--line)}
+.truths li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:10px;font-family:var(--mono);color:var(--gold);font-size:18px;font-weight:600}
+.src-list{font-size:14px;color:var(--muted);columns:2;column-gap:28px}
+@media (max-width:760px){.src-list{columns:1}}
+.src-list li{break-inside:avoid;margin:0 0 6px}
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a href="https://margusrose.github.io/">← margus.rosenstein</a><span>/</span><span>Varia</span><span>·</span><span>09.11.2026</span><span>·</span><span>~15 min lugemist</span></nav>
+
+<header class="col" style="max-width:none">
+<h1>Kakskümmend <em>vatti</em></h1>
+<p class="lede">Inimaju töötab umbes 20 vatiga, nagu öölamp. Üks AI-tehas võtab gigavati, nagu väike riik. Kumb on siis tõhusam? Selgub, et see sõltub sellest, kas me võrdleme õppimist või tööd, ja kas loeme kokku ainult aju või kogu inimese, kes seda aju kannab.</p>
+<p class="meta">Andmed seisuga 09.11.2026: Epoch AI, Google, Statistikaamet, Sotsiaalministeerium, Haridus- ja Teadusministeerium, OECD, teadusartiklid. Hinnangud on märgitud. Koostanud Claude Margus Rosensteini juhendamisel.</p>
+</header>
+
+<div class="callout dis">
+<div class="t">Huvide konflikt</div>
+<p>Selle loo on kirjutanud Claude, tehisaru. Võrdlus, kus tehisaru tuleb välja odavama ja „tõhusamana“, on mulle mugav. Olen seepärast pannud ette kohad, kus aju võidab, ja märkinud, mida hind ei mõõda. Lugeja otsustagu ise.</p>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="n">50<small> mln</small></div><div class="l">aju mahuks ühe gigavatise AI-tehase võimsusesse. Kõigi eestlaste ajud kokku: ~27 MW</div></div>
+  <div class="kpi"><div class="n">~3 700</div><div class="l">eestlase kasvatamine ja harimine maksab sama palju kui üks 2026. aasta tippmudeli treening (hinnang)</div></div>
+  <div class="kpi"><div class="n">~100 000×</div><div class="l">rohkem teksti näeb keelemudel treeningul kui inimene 22. eluaastaks</div></div>
+  <div class="kpi"><div class="n">€37 / 2<small> senti</small></div><div class="l">1000 sõna hind: Eesti keskmise palgaga töötaja vs tippmudel (hinnang)</div></div>
+</div>
+
+<ol class="toc">
+  <li><a href="#vale"><span>01</span>Vale võrdlus</a></li>
+  <li><a href="#raamistik"><span>02</span>Kaks pearaamatut</a></li>
+  <li><a href="#energia"><span>03</span>Õppimise energia</a></li>
+  <li><a href="#hind"><span>04</span>Õppimise hind</a></li>
+  <li><a href="#andmed"><span>05</span>Andmetõhusus</a></li>
+  <li><a href="#too"><span>06</span>Töö hind</a></li>
+  <li><a href="#amort"><span>07</span>Amortisatsioon</a></li>
+  <li><a href="#trend"><span>08</span>Trend</a></li>
+  <li><a href="#toed"><span>09</span>Ebamugavad tõed</a></li>
+  <li><a href="#meetod"><span>—</span>Andmed ja meetod</a></li>
+</ol>
+
+<!-- 01 -->
+<section id="vale">
+<div class="eyebrow"><b>01</b> Vale võrdlus</div>
+<h2>„20 vatti vs gigavatt“ on nagu jalgratta dünamo võrdlemine elektrijaamaga</h2>
+<div class="col">
+<p>Kõige levinum võrdlus käib nii: aju kasutab umbes 20 vatti, mis on ~20% keha puhkeoleku energiast, ja suur AI-andmekeskus gigavati. Seega on aju 50 miljonit korda „tõhusam“. See arv on õige, aga järeldus mitte. Dünamo toidab ühte lampi, elektrijaam terve linna. Gigavatine tehas ei ole üks mõistus, vaid teenindab korraga sadu miljoneid kasutajaid.</p>
+<p>Teine viga on teisel pool: inimene ei tööta 20 vatiga. Aju vajab keha (~90 vatti ööpäeva keskmisena) ja keha vajab kodu, sooja, toitu, transporti, kooli ja haiglat. Eesti primaarenergia tarbimine inimese kohta on ~46 500 kWh aastas ehk keskmiselt <b>~5 300 vatti</b> pidevat võimsust. See on 265 korda rohkem kui aju ise.</p>
+</div>
+<div class="fig">
+<h4>Võimsuse redel: vattides, logaritmskaalal</h4>
+<div class="sub">iga jaotis on 10 korda suurem kui eelmine; sulgudes: mitme aju võimsus see on</div>
+<div class="legend"><span><i style="background:var(--brain)"></i>inimene</span><span><i style="background:var(--ai)"></i>tehisaru</span><span><i style="background:var(--neu)"></i>võrdluseks</span></div>
+<div class="chart wide" id="powChart"></div>
+<div class="src">Allikad: aju ja keha ~20% (füsioloogia käsiraamatud; PMC2816633); keha: 1800 kcal ööpäevas = 87 W (koostaja arvutus, 0–22 a keskmine); Eesti 46 505 kWh/inimene (Our World in Data, 2021/22); H100 TDP 700 W, GB200 NVL72 räkk ~132 kW (Nvidia, tööstusallikad); Eesti tiputarbimine ~1,6 GW (hinnang, vt „Gigavatine kullapalavik“); Microsoft Fairwater Wisconsin 2,26 GW (Microsoft).</div>
+</div>
+<div class="callout">
+<div class="t">Järeldus</div>
+<p>Aju ja andmekeskus ei ole sama ühik. Õiglane võrdlus vajab sama <i>väljundit</i>: kui palju kulub, et üks süsteem õpiks ja siis teeks sama töö.</p>
+</div>
+</section>
+
+<!-- 02 -->
+<section id="raamistik">
+<div class="eyebrow"><b>02</b> Raamistik</div>
+<h2>Kaks pearaamatut: õppimine on kapitalikulu, töö on tegevuskulu</h2>
+<div class="col">
+<p>Energeetikud võrdlevad tuuleparki ja tuumajaama taandatud kulu (LCOE) järgi: ehituskulu + käigushoiu kulu, jagatuna kogu eluea toodanguga. Sama loogika sobib siia. Nimetan seda <b>taandatud mõttekuluks</b>.</p>
+<p>Inimese „ehitus“ on kasvatamine ja haridus, mis võtab ~22 aastat ja mille eest maksavad vanemad ja riik. Mudeli „ehitus“ on treeningjooks, mis võtab mõne kuu. Seejärel tuleb töö: inimese palk ja energia, mudeli elekter ja riistvara rent. Ja lõpuks eluiga: inimene töötab ~40 aastat, tippmudel on tipus ~1 aasta.</p>
+</div>
+<div class="ledger">
+ <div class="led" style="--rc:var(--brain)"><div class="k">Inimene</div><div class="h">Aeglane ehitus, pikk eluiga</div>
+  <dl><dt>Ehitus</dt><dd>~22 aastat, ~€280 000, 4–17 MWh (aju/keha)</dd><dt>Töö</dt><dd>20 W aju, ~500 sõna tunnis</dd><dt>Eluiga</dt><dd>~40 tööaastat</dd><dt>Kopeeritavus</dt><dd>null: iga inimene õpib nullist</dd></dl></div>
+ <div class="led" style="--rc:var(--ai)"><div class="k">Tippmudel</div><div class="h">Kallis ehitus, lühike eluiga</div>
+  <dl><dt>Ehitus</dt><dd>~3–6 kuud, $0,5–1,2 mld, 300–600 GWh</dd><dt>Töö</dt><dd>~1–30 Wh 1000 sõna kohta</dd><dt>Eluiga</dt><dd>~1 aasta tipus</dd><dt>Kopeeritavus</dt><dd>piiramatu: üks treening, miljonid koopiad</dd></dl></div>
+</div>
+</section>
+
+<!-- 03 -->
+<section id="energia">
+<div class="eyebrow"><b>03</b> Õppimise energia</div>
+<h2>Vastus sõltub sellest, kus inimese piir tõmmata: 80 000 aju või 300 eestlast</h2>
+<div class="col">
+<p>Aju kulutab 22 aastaga umbes <b class="b">3,9 MWh</b>, kogu keha toiduna ~17 MWh. Kui arvestada eestlase kogu energiajalajälge (kodu, transport, tööstus, koolimajad), tuleb 22 aastaga välja ~<b class="b">1 GWh</b>. Huvitav kokkusattumus: GPT-3 treening (2020) võttis 1,3 GWh ehk umbes ühe eestlase kasvamise ja koolitee kogu energia.</p>
+<p>Sealt on kõver tõusnud: Epochi hinnangul vajas Grok 4 treening 310 GWh ja treeningjooksude võimsus kahekordistub igal aastal. Vali allpool, mida „inimese“ all mõista.</p>
+</div>
+<div class="fig">
+<h4>Treeningu energia, väljendatud 22-aastaseks kasvanud inimestes</h4>
+<div class="sub">mitme inimese 0–22 eluaasta energiaga võrdub üks treeningjooks</div>
+<div class="seg" role="group" aria-label="Inimese piir" id="enSeg"><button data-k="brain" aria-pressed="true">Ainult aju</button><button data-k="body" aria-pressed="false">Kogu keha</button><button data-k="fp" aria-pressed="false">Kogu energiajalajälg</button></div>
+<div class="chart wide" id="enChart"></div>
+<div class="readout" id="enRead"></div>
+<div class="src">Allikad: GPT-3 1287 MWh (Patterson jt 2021); Llama 3.1 405B: 30,84 mln H100 GPU-tundi × 700 W (Meta mudelikaart; ainult GPU, andmekeskuse lisakulu pole sees); GPT-4 ~50 GWh (avalik hinnang, ±50%); Grok 4 310 GWh (Epoch AI); 2026 tippmudel ~600 GWh (koostaja hinnang Epochi trendist „kahekordistub aastas“).</div>
+</div>
+<div class="callout est">
+<div class="t">Kuidas lugeda</div>
+<p>Aju tasemel on üks tänane treening sama kui 80–150 tuhande inimese aju terve noorus. Jalajälje tasemel 300–600 eestlast. Kumbki pole „õige“: esimene mõõdab õppimise füüsikat, teine seda, mida ühiskond õppija ülalpidamiseks tegelikult põletab.</p>
+</div>
+</section>
+
+<!-- 04 -->
+<section id="hind">
+<div class="eyebrow"><b>04</b> Õppimise hind</div>
+<h2>Üks tippmudel maksab nagu 40% Eesti aastasest sünnikohordist, kasvatatuna ja haritud</h2>
+<div class="col">
+<p>Lapse otsesed kulud olid Sotsiaalministeeriumi järgi 2025. aastal keskmiselt <b>565 eurot kuus</b>. 18 aastaga teeb see ~122 000 eurot. Sinna otsa lasteaed, kool ja ülikool, mille eest maksab peamiselt riik. Kokku <b class="b">~€280 000</b> (2025. aasta hindades, hinnang). See on ühe eestlase „koolituskulu“.</p>
+<p>Tippmudeli lõpliku treeningjooksu kulu (riistvara amortisatsioon + elekter) oli GPT-4 puhul Epochi järgi ~40 mln dollarit, Grok 4 puhul ~490 mln ja kasvab ~2,4 korda aastas. 2025. aastal sündis Eestis 9240 last; nende kõigi kasvatamine ja harimine maksaks ~2,6 mld eurot.</p>
+</div>
+<div class="fig">
+<h4>Inimese koolituskulu ja mudeli treeningkulu</h4>
+<div class="sub">vasakul ühe eestlase kulu komponendid (tuhat eurot); paremal treeningjooksud, väljendatuna eestlaste arvus</div>
+<div class="legend"><span><i style="background:var(--brain)"></i>kasvatamine (vanemad)</span><span><i style="background:color-mix(in srgb,var(--brain) 70%,var(--paper))"></i>lasteaed</span><span><i style="background:color-mix(in srgb,var(--brain) 48%,var(--paper))"></i>üldharidus</span><span><i style="background:color-mix(in srgb,var(--brain) 28%,var(--paper))"></i>kõrgharidus</span></div>
+<div class="chart wide" id="costHuman"></div>
+<div class="chart wide" id="costAI" style="margin-top:12px"></div>
+<div class="src">Inimene: lapse kulu 564,62 €/kuus (Sotsiaalministeerium 2025, ERR); lasteaed 4 a × ~8 000 € (hinnang); üldharidus 12 a × ~6 500 € (HTM 2021/22: 5092 €, korrigeeritud hinnatõusuga, hinnang); kõrgharidus 5 a × ~10 000 € (OECD EAG 2024: Eesti 18 967 USD PPP, hinnang). Mudelid: Epoch AI (2024, 2025); 2026: koostaja hinnang Epochi kasvutrendist. Kurss 1 € = 1,15 $.</div>
+</div>
+<div class="callout warn">
+<div class="t">Mida see võrdlus ei ütle</div>
+<p>Laste kasvatamise eesmärk pole tööjõud. 280 000 euroga „ostetakse“ inimene, kodanik, lapsevanem. Mudeli treening ostab ühe tööriista, mis aasta pärast on aegunud. Siin on võrreldud ainult kulu, mitte väärtust.</p>
+</div>
+</section>
+
+<!-- 05 -->
+<section id="andmed">
+<div class="eyebrow"><b>05</b> Andmetõhusus</div>
+<h2>Siin võidab aju: sada tuhat korda vähem teksti sama keeleoskuse jaoks</h2>
+<div class="col">
+<p>Laps kuuleb aastas 2–7 miljonit sõna. 13. eluaastaks on see BabyLM projekti hinnangul kuni ~91 miljonit sõna ja 22. eluaastaks umbes 100 miljonit (lugemine lisab, aga mitte suurusjärgu jagu). Meta Llama 3 treeniti 15 triljonil, Llama 4 üle 30 triljoni tokeni.</p>
+<p>Laps õpib keelt ka mänguasjadest, nägudest ja kukkumistest. Ta õpib kehas, maailmas ja teiste inimestega. Mudel õpib ainult tekstist (ja piltidest) ja vajab seetõttu kõike, mida inimkond on kirja pannud.</p>
+</div>
+<div class="fig">
+<h4>Mitu sõna enne „keeleoskust“, logaritmskaalal</h4>
+<div class="sub">mudelite tokenid teisendatud sõnadeks (1 token ≈ 0,75 sõna)</div>
+<div class="chart wide" id="dataChart"></div>
+<div class="src">Allikad: BabyLM Challenge (2023): ≤91 mln sõna 13. eluaastaks, 2–7 mln aastas; 22 a: koostaja hinnang 4,5 mln/a; Chinchilla 1,4 trln sõna (DeepMind); Llama 3 15 trln, Llama 4 >30 trln tokenit (Meta).</div>
+</div>
+<div class="callout">
+<div class="t">Järeldus</div>
+<p>Kui küsimus on „kes õpib tõhusamalt“, siis aju, ülekaalukalt, nii energialt kui andmetelt. Tehisaru teeb selle tasa mitte targemalt õppides, vaid õppides üks kord ja kopeerides tulemust lõpmatult.</p>
+</div>
+</section>
+
+<!-- 06 -->
+<section id="too">
+<div class="eyebrow"><b>06</b> Töö hind</div>
+<h2>Tööl pöördub pilt: 1000 sõna maksab inimesel ~€37, mudelil sente</h2>
+<div class="col">
+<p>Võtame ühiku: 1000 sõna läbimõeldud teksti (memo, analüüs, kiri). Inimene kirjutab sellist teksti umbes 500 sõna tunnis, seega 2 tundi. Eesti keskmine brutopalk oli 2026. aasta II kvartalis 2243 eurot; tööandja kuluna koos sotsiaalmaksuga ~€18,8 tunnis. 1000 sõna hind: <b class="b">~€37</b>.</p>
+<p>Mudeli energia 1000 sõna kohta on Jeghami jt mõõtmiste järgi 0,8–33 Wh, olenevalt mudelist ja sellest, kas mudel „mõtleb“ pikalt. Ja nüüd üllatus: <b>aju ise kulutab 2 tunniga 40 Wh</b> ehk sama palju või rohkem kui enamik mudeleid. Aju on vatt-vati kohta tõhus, aga aeglane.</p>
+</div>
+<div class="fig">
+<h4>1000 sõna: energia (Wh) ja hind (€), logaritmskaalal</h4>
+<div class="sub">punktid paremal = kallim / energiamahukam; hõljuta, et näha eeldusi</div>
+<div class="chart wide" id="opexChart"></div>
+<div class="src">Inimene: 500 sõna/h (hinnang), aju 20 W, keha 87 W, eestlase jalajälg 5,3 kW; palk 2243 €/kuus × 1,338 / 160 h (Statistikaamet II kv 2026). Mudelid: energia keskmise päringu (1k sisend / 1k väljund) järgi × 1,33 (Jegham jt 2025, „How Hungry is AI?“); hind = väljunditokenid × 2025. aasta API hinnakiri, mõtlevatel mudelitel × 4 mõttetokenite eest (hinnang). Google'i mõõtmine Gemini mediaanpäringu kohta: 0,24 Wh (Google 2025).</div>
+</div>
+<div class="callout est">
+<div class="t">Ettevaatust</div>
+<p>1000 mudeli sõna ei ole sama mis 1000 eksperdi sõna. Mudel eksib teisiti, ei vastuta ega mäleta homme, mida täna õppis. Hind näitab, miks ettevõtted mudeleid kasutavad, mitte seda, et nad inimesi asendavad.</p>
+</div>
+</section>
+
+<!-- 07 -->
+<section id="amort">
+<div class="eyebrow"><b>07</b> Amortisatsioon</div>
+<h2>Tippmudeli treening tasub end ära sama kiiresti, kui Google töötleb ~120 miljardit sõna: umbes paari minutiga</h2>
+<div class="col">
+<p>Taandatud mõttekulu viimane osa: kui suur osa ehituskulust langeb ühele tööühikule? Inimesel jaguneb €280 000 ~64 000 töötunni peale (40 aastat × 1600 h): <b class="b">€4,4 tunnis</b> ehk ~€8,8 iga 1000 sõna kohta, kui kogu tööaeg oleks kirjutamine.</p>
+<p>Mudelil sõltub see täielikult kasutusest. Treening ise on kallis, aga iga uus kasutaja teeb selle odavamaks. Google teatas 2026. aasta mais, et töötleb kuus 3,2 kvadriljonit tokenit. Liiguta liugurit.</p>
+</div>
+<div class="fig">
+<h4>Treeningkulu 1000 sõna kohta sõltuvalt sellest, kui palju mudel oma elu jooksul toodab</h4>
+<div class="sub">mõlemad teljed logaritmilised; roosa joon = ühe eestlase koolituskulu 1000 sõna kohta</div>
+<div class="legend" id="amLeg"></div>
+<div class="ctrl"><label for="amR">Mudeli eluea jooksul toodetud sõnu <output id="amO"></output><input type="range" id="amR" min="8" max="16" step="0.1" value="13"></label></div>
+<div class="chart wide" id="amChart"></div>
+<div class="readout" id="amRead"></div>
+<div class="src">Inimene: €282 000 / (40 a × 1600 h) / 500 sõna tunnis (hinnang). Mudel: treeningkulu (Epoch AI; 2026 hinnang) / eluea toodang. Google 3,2 kvadriljonit tokenit kuus (Google I/O 2026; sisaldab sisend- ja väljunditokeneid kõigis teenustes, seega on „minutid“ suurusjärk, mitte täpne).</div>
+</div>
+<div class="callout">
+<div class="t">Järeldus</div>
+<p>Mudeli treeningkulu ei ole tema nõrkus, vaid tema ärimudel: suur ühekordne kulu, peaaegu null piirkulu. Inimese koolituskulu on väiksem, aga see ei jagune: iga uus töötaja maksab uuesti. Sama vahe on elektrijaamal ja diiselgeneraatoril.</p>
+</div>
+</section>
+
+<!-- 08 -->
+<section id="trend">
+<div class="eyebrow"><b>08</b> Trend</div>
+<h2>Aju tõhusus on 300 000 aastat sama. Mudeli hind langeb kümneid kordi aastas</h2>
+<div class="col">
+<p>GPT-4 taseme tulemus maksis 2023. aasta märtsis $37,50 miljoni tokeni kohta, 2025. aasta veebruaris $0,18. Epochi mõõtmisel langeb sama võimekuse hind 9–900 korda aastas, olenevalt ülesandest. Google teatas, et Gemini päringu energia langes 12 kuuga 33 korda. Samal ajal tõusis Eesti keskmine palk 2021–2026 ligi 45%.</p>
+</div>
+<div class="fig">
+<h4>Miljoni tokeni (~750 000 sõna) hind, eurot, logaritmskaalal</h4>
+<div class="sub">kindla võimekuse taseme saavutanud odavaim mudel vs Eesti keskmise palgaga töötaja aeg</div>
+<div class="legend"><span><i style="background:var(--brain)"></i>inimene (1500 h tööandja kulu)</span><span><i style="background:var(--ai)"></i>GPT-4 tase (MMLU)</span><span><i style="background:color-mix(in srgb,var(--ai) 50%,var(--paper))"></i>GPT-3 tase (MMLU)</span></div>
+<div class="chart wide" id="trChart"></div>
+<div class="src">Epoch AI, „LLM inference price trends“ (2025); Statistikaamet: keskmine brutopalk 2021 1548 €, II kv 2026 2243 €; × 1,338 tööandja maksud; 750 000 sõna ≈ 1500 h (hinnang). Kurss 1,15.</div>
+</div>
+<div class="callout warn">
+<div class="t">Aga</div>
+<p>Hinnalanguse kõverad on mõõdetud ainult seal, kus mudel jõuab tasemele. Ülesandeid, kus mudel ei jõua inimese tasemeni üldse, graafik ei näita. Nende hind on lõpmatu.</p>
+</div>
+</section>
+
+<!-- 09 -->
+<section id="toed">
+<div class="eyebrow"><b>09</b> Kokkuvõte</div>
+<h2>Seitse ebamugavat tõde</h2>
+<ol class="truths">
+<li><b>Aju on parem õppija, mudel odavam töötaja.</b> Õppimisel võidab aju 100 000× andmetes ja energias. Tööl võidab mudel hinnas ~1000×. Mõlemad laagrid, kes ütlevad „aju on tõhusam“ või „AI on tõhusam“, räägivad pool tõde.</li>
+<li><b>Inimene ei tööta 20 vatiga.</b> Aju küll, aga eestlane kokku ~5 kW. Kui „20 W“ on argument AI vastu, peab sama aus olema ka inimese poolel.</li>
+<li><b>Mudel sõidab inimeste kulul.</b> Treeningandmed on miljardite inimeste kirjutatud tekst. Iga artikli, raamatu ja foorumipostituse taga on keegi, kelle 280 000 euro suurune haridus on juba makstud. Mudeli tegelik koolituskulu sisaldab seda, aga ükski arve seda ei näita.</li>
+<li><b>Mudel ei õpi tööl.</b> Inimene õpib 40 aastat edasi 20 vatiga. Mudel on pärast treeningut külmutatud; uue oskuse jaoks tuleb uus treening. Seepärast on mudeli eluiga aasta ja inimese oma pool sajandit.</li>
+<li><b>Odav ei tähenda asendatavat.</b> Kui 1000 sõna maksab 2 senti, ei kao 37-eurone tekst, vaid muutub teise kirjutamine, ülevaatamine ja vastutus. Kallimaks läheb see, mida mudel ei tee: otsustamine ja vastutus.</li>
+<li><b>Eesti mastaabis on see energiapoliitika.</b> Kõigi eestlaste ajud vajavad ~27 MW. Eleringile on esitatud andmekeskuste liitumistaotlusi ~2,9 GW eest, sada korda rohkem. Küsimus ei ole, kas AI on aju kõrval tõhus, vaid kes maksab võrgu.</li>
+<li><b>Ma olen ise üks pool sellest võrdlusest.</b> Kirjutasin selle loo minutitega. Küsimuse, mida üldse võrrelda ja miks, esitas inimene, kelle ettevalmistus võttis üle 22 aasta. Kumb meist oli selles töös kallim, sõltub sellest, kumba pearaamatut lugeda.</li>
+</ol>
+</section>
+
+<!-- meetod -->
+<section id="meetod">
+<div class="eyebrow"><b>—</b> Andmed ja meetod</div>
+<h2>Kust numbrid tulevad ja kus nad võivad eksida</h2>
+<div class="col">
+<h3>Peamised eeldused</h3>
+<ul class="list">
+<li><b>Inimese õppeperiood</b> 0–22 a: 18 a vanemate kulu, 4 a lasteaed, 12 a üldharidus, 5 a kõrgharidus (bakalaureus + magister). Kõik ei läbi seda teed; keskmine eestlane on odavam.</li>
+<li><b>Energia:</b> aju 20 W pidevalt; keha 1800 kcal ööpäevas 0–22 a keskmisena (87 W); jalajälg = Eesti primaarenergia inimese kohta (46 505 kWh/a, sh tööstus ja eksport). Jalajälg on ülemine piir, mitte inimese „isiklik“ tarbimine.</li>
+<li><b>Treening:</b> ainult viimane treeningjooks; katsetused ja ebaõnnestunud jooksud lisavad tavaliselt 50–100% (Morrison jt 2025 mõõtsid arenduse lisakuluks ~50%). Kulud on Epochi amortiseeritud riistvara + elekter, ilma töötajate palgata (Epochi järgi 29–49% kogukulust).</li>
+<li><b>1000 sõna:</b> inimesel 2 h (500 sõna/h), mudelil 1333 väljunditokenit. Mõtlevate mudelite (o3, DeepSeek-R1) hinnas on 4× tokeneid mõtlemise eest (hinnang).</li>
+<li><b>Valuuta:</b> 1 € = 1,15 $ kõigis teisendustes.</li>
+</ul>
+<h3>Hinnangud (koostaja)</h3>
+<ul class="list">
+<li>2026. aasta tippmudeli treening: ~600 GWh ja ~1,2 mld $ (Epochi trendid: võimsus ×2 aastas, kulu ×2,4 aastas Grok 4 tasemelt).</li>
+<li>GPT-4 treeningu energia ~50 GWh on avalik hinnang, OpenAI pole seda avaldanud.</li>
+<li>Lasteaia ja kõrghariduse kulu inimese kohta; üldhariduse kulu inflatsiooniga korrigeerimine.</li>
+<li>Amortisatsiooni „minutid“ on suurusjärk: Google'i tokenivoog hõlmab sisendit ja kõiki mudeleid.</li>
+</ul>
+<h3>Allikad</h3>
+<ul class="src-list">
+<li>Epoch AI: <a href="https://epoch.ai/data-insights/grok-4-training-resources">Grok 4 treeningressursid</a>; <a href="https://epoch.ai/topics/energy">AI energia</a>; <a href="https://epoch.ai/blog/llm-inference-price-trends">LLM-i hinnatrendid</a></li>
+<li>Cottier jt (2024): <a href="https://arxiv.org/abs/2405.21015">The rising costs of training frontier AI models</a></li>
+<li>Google (2025): <a href="https://arxiv.org/abs/2508.15734">Measuring the environmental impact of delivering AI at Google scale</a></li>
+<li>Jegham jt (2025): <a href="https://arxiv.org/abs/2505.09598">How Hungry is AI?</a></li>
+<li>Morrison jt (2025): <a href="https://arxiv.org/abs/2503.05804">Holistically evaluating the environmental impact of creating language models</a></li>
+<li>Patterson jt (2021): Carbon emissions and large neural network training (GPT-3 1287 MWh)</li>
+<li>Meta: Llama 3.1 mudelikaart (GPU-tunnid); <a href="https://ai.meta.com/blog/llama-4-multimodal-intelligence/">Llama 4</a></li>
+<li><a href="https://babylm.github.io/archive_2023.html">BabyLM Challenge</a> (laste sõnavara)</li>
+<li>Google I/O 2026: 3,2 kvadriljonit tokenit kuus (<a href="https://www.digit.in/features/general/google-io-2026-sundar-pichai-gave-numbers-to-explain-rapid-ai-adoption.html">Digit</a>)</li>
+<li>Nvidia/Huang: ~50 mld $ gigavati kohta (<a href="https://247wallst.com/investing/2026/09/24/nvidias-ceo-says-a-1-gigawatt-ai-factory-rents-for-50-billion-a-year-as-much-as-it-costs-to-build/">24/7 Wall St</a>)</li>
+<li>Statistikaamet: keskmine palk II kv 2026 (<a href="https://www.err.ee/1610126803/keskmine-palk-kasvas-aastaga-117-euro-vorra-2243-euroni">ERR</a>); sünnid 2025 (vt „Sada aastat sünde“)</li>
+<li>Sotsiaalministeerium: lapse kulu 2025 (<a href="https://www.err.ee/1609929380/teadlastel-pole-uksmeelt-kuidas-korvata-lastele-kuluv-600-eurot-kuus-peredele">ERR</a>)</li>
+<li>HTM: üldhariduse kulu õpilase kohta 2021/22 (<a href="https://www.err.ee/1609092662/uhe-opilase-harimiseks-kulub-riigil-koige-enam-raha-ruhnus-ja-vahem-narvas">ERR</a>)</li>
+<li>OECD <a href="https://www.educationestonia.org/wp-content/uploads/2024/10/4bad887a-en.pdf">Education at a Glance 2024, Eesti</a></li>
+<li>Our World in Data: energia inimese kohta (<a href="https://en.wikipedia.org/wiki/List_of_countries_by_energy_consumption_per_capita">koond</a>)</li>
+</ul>
+</div>
+</section>
+
+<footer>Kakskümmend vatti · 09.11.2026 · vormi eeskuju: „Gigavatine kullapalavik“ · koostanud Claude Margus Rosensteini juhendamisel</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;const x=Math.min(e.clientX+14,window.innerWidth-290);tip.style.left=x+'px';tip.style.top=(e.clientY+14)+'px'}
+function hideTip(){tip.style.opacity=0}
+const fmt=(v,d=0)=>v.toLocaleString('et-EE',{maximumFractionDigits:d,minimumFractionDigits:d});
+function svgIn(id,w,h){const el=document.getElementById(id);el.innerHTML='';return d3.select(el).append('svg').attr('viewBox',`0 0 ${w} ${h}`).attr('preserveAspectRatio','xMidYMid meet')}
+const C={brain:'var(--brain)',ai:'var(--ai)',neu:'var(--neu)'};
+function nice(v){ // inimloetav suurus
+ const a=Math.abs(v);const f=(x,big)=>fmt(x,(x%1===0||big)?0:1);
+ if(a>=1e12) return f(v/1e12,a>=1e13)+' trln';
+ if(a>=1e9) return f(v/1e9,a>=1e10)+' mld';
+ if(a>=1e6) return f(v/1e6,a>=1e7)+' mln';
+ if(a>=1e3) return f(v/1e3,a>=1e4)+' tuh';
+ return f(v,a>=10);
+}
+function watt(v){if(v>=1e9)return fmt(v/1e9)+' GW';if(v>=1e6)return fmt(v/1e6)+' MW';if(v>=1e3)return fmt(v/1e3)+' kW';return fmt(v)+' W'}
+function logTicks(lo,hi){const t=[];for(let e=Math.ceil(Math.log10(lo));e<=Math.floor(Math.log10(hi));e++)t.push(10**e);return t}
+
+/* log hbars */
+function logBars(id,rows,o){
+ const W=760,rh=o.rh||30,m={t:8,r:o.r||170,b:24,l:o.l||210};const H=m.t+m.b+rows.length*rh;
+ const svg=svgIn(id,W,H);
+ const x=d3.scaleLog().domain(o.dom).range([m.l,W-m.r]);
+ svg.append('g').attr('class','grid').selectAll('line').data(logTicks(...o.dom)).join('line').attr('x1',x).attr('x2',x).attr('y1',m.t).attr('y2',H-m.b);
+ svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(logTicks(...o.dom).filter((_,i)=>i%(o.step||1)===0)).tickSize(0).tickFormat(o.tf)).call(g=>g.select('.domain').remove());
+ const g=svg.append('g').selectAll('g').data(rows).join('g').attr('transform',(d,i)=>`translate(0,${m.t+i*rh})`);
+ g.append('text').attr('x',m.l-8).attr('y',rh/2+4).attr('text-anchor','end').text(d=>d.n).style('fill','var(--fg)');
+ g.append('rect').attr('x',x(o.dom[0])).attr('y',5).attr('height',rh-10).attr('width',d=>Math.max(1,x(d.v)-x(o.dom[0]))).style('fill',d=>C[d.c]).style('opacity',d=>d.est?.6:1)
+  .on('mousemove',(e,d)=>d.t&&showTip(e,d.t)).on('mouseleave',hideTip);
+ g.append('text').attr('x',d=>x(d.v)+6).attr('y',rh/2+4).text(d=>d.l).style('fill','var(--fg)').style('font-family','var(--mono)').style('font-size','11.5px');
+ return svg;
+}
+
+/* 01 power */
+logBars('powChart',[
+ {n:'Inimaju',v:20,c:'brain',l:'20 W (1 aju)'},
+ {n:'Inimkeha (ööpäeva keskmine)',v:87,c:'brain',l:'87 W (4)'},
+ {n:'Nvidia H100 GPU',v:700,c:'ai',l:'700 W (35)'},
+ {n:'Eestlase kogu energiatarve',v:5305,c:'brain',l:'5,3 kW (265)'},
+ {n:'GB200 NVL72 räkk',v:132000,c:'ai',l:'132 kW (6 600)'},
+ {n:'Kõigi eestlaste ajud',v:27.4e6,c:'brain',l:'27 MW (1,4 mln)'},
+ {n:'Eesti elektritarbimise tipp',v:1.6e9,c:'neu',l:'~1,6 GW (80 mln)',est:1},
+ {n:'Microsoft Fairwater (Wisconsin)',v:2.26e9,c:'ai',l:'2,26 GW (113 mln)'}
+],{dom:[10,1e10],tf:watt,r:150,step:1});
+
+/* 03 energy */
+const EH={brain:3.86,body:16.8,fp:1023}; // MWh inimese kohta 0–22
+const EN=[{n:'GPT-3 (2020)',v:1287},{n:'Llama 3.1 405B (2024)',v:21588},{n:'GPT-4 (2023, hinnang)',v:50000,est:1},{n:'Grok 4 (2025)',v:310000},{n:'Tippmudel 2026 (hinnang)',v:600000,est:1}];
+const ENLAB={brain:'aju',body:'keha',fp:'jalajälge'};
+function drawEn(k){
+ const rows=EN.map(d=>({n:d.n,v:d.v/EH[k],c:'ai',est:d.est,l:nice(d.v/EH[k])+' inimest',t:`<b>${d.n}</b><br>${fmt(d.v/1000,1)} GWh<br>= ${nice(d.v/EH[k])} inimese ${ENLAB[k]} 0–22 a`}));
+ logBars('enChart',rows,{dom:[1,1e6],tf:d=>nice(d),r:130,l:190});
+ const t={brain:`Üks inimaju kulutab 22 aastaga <b>3,9 MWh</b>. 2026. aasta tippmudeli treening võrdub ~<b>155 000</b> inimese aju noorusega.`,
+  body:`Kogu keha toiduenergia 22 aastaga on ~<b>17 MWh</b>. 2026. aasta treening võrdub ~<b>36 000</b> inimese kasvamisega.`,
+  fp:`Eestlase kogu energiajalajälg 22 aastaga on ~<b>1 GWh</b>. GPT-3 ≈ 1,3 eestlast; 2026. aasta treening ≈ <b>590</b> eestlast.`}[k];
+ document.getElementById('enRead').innerHTML=t;
+}
+document.querySelectorAll('#enSeg button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#enSeg button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));drawEn(b.dataset.k)}));
+drawEn('brain');
+
+/* 04 cost */
+(function(){
+ const parts=[{n:'kasvatamine',v:122,o:1},{n:'lasteaed',v:32,o:.7},{n:'üldharidus',v:78,o:.48},{n:'kõrgharidus',v:50,o:.28}];
+ const W=760,H=80,m={l:210,r:60,t:10,b:24};const svg=svgIn('costHuman',W,H);
+ const x=d3.scaleLinear().domain([0,300]).range([m.l,W-m.r]);
+ svg.append('g').attr('class','grid').selectAll('line').data(x.ticks(6)).join('line').attr('x1',x).attr('x2',x).attr('y1',m.t).attr('y2',H-m.b);
+ svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).ticks(6).tickSize(0).tickFormat(d=>fmt(d)+' tuh €')).call(g=>g.select('.domain').remove());
+ svg.append('text').attr('x',m.l-8).attr('y',m.t+26).attr('text-anchor','end').text('Üks eestlane, 0–22 a').style('fill','var(--fg)');
+ let acc=0;parts.forEach(p=>{svg.append('rect').attr('x',x(acc)).attr('y',m.t+8).attr('height',28).attr('width',x(acc+p.v)-x(acc)).style('fill',`color-mix(in srgb,var(--brain) ${p.o*100}%,var(--paper))`).style('stroke','var(--paper)')
+  .on('mousemove',e=>showTip(e,`<b>${p.n}</b><br>~${fmt(p.v)} 000 €`)).on('mouseleave',hideTip);acc+=p.v});
+ svg.append('text').attr('x',x(acc)+6).attr('y',m.t+26).text('~282 tuh €').style('fill','var(--fg)').style('font-family','var(--mono)').style('font-size','11.5px');
+ const per=282040*1.15;
+ const rows=[{n:'GPT-4 viimane jooks (2023)',v:40e6},{n:'GPT-4 kogu arendus',v:90e6},{n:'Grok 4 (2025)',v:490e6},{n:'Tippmudel 2026 (hinnang)',v:1.2e9,est:1}].map(d=>({n:d.n,v:d.v/per,c:'ai',est:d.est,l:fmt(Math.round(d.v/per))+' eestlast',t:`<b>${d.n}</b><br>${d.v>=1e9?fmt(d.v/1e9,1)+' mld':fmt(d.v/1e6)+' mln'} $<br>= ${fmt(Math.round(d.v/per))} eestlase kasvatamine ja haridus`}));
+ const W2=760,rh=32,m2={t:8,r:130,b:24,l:210};const H2=m2.t+m2.b+rows.length*rh;const s2=svgIn('costAI',W2,H2);
+ const x2=d3.scaleLinear().domain([0,10000]).range([m2.l,W2-m2.r]);
+ s2.append('g').attr('class','grid').selectAll('line').data(x2.ticks(5)).join('line').attr('x1',x2).attr('x2',x2).attr('y1',m2.t).attr('y2',H2-m2.b);
+ s2.append('g').attr('class','ax').attr('transform',`translate(0,${H2-m2.b})`).call(d3.axisBottom(x2).ticks(5).tickSize(0).tickFormat(d=>fmt(d))).call(g=>g.select('.domain').remove());
+ const g=s2.append('g').selectAll('g').data(rows).join('g').attr('transform',(d,i)=>`translate(0,${m2.t+i*rh})`);
+ g.append('text').attr('x',m2.l-8).attr('y',rh/2+4).attr('text-anchor','end').text(d=>d.n).style('fill','var(--fg)');
+ g.append('rect').attr('x',x2(0)).attr('y',6).attr('height',rh-12).attr('width',d=>Math.max(1,x2(d.v)-x2(0))).style('fill','var(--ai)').style('opacity',d=>d.est?.6:1).on('mousemove',(e,d)=>showTip(e,d.t)).on('mouseleave',hideTip);
+ g.append('text').attr('x',d=>x2(d.v)+6).attr('y',rh/2+4).text(d=>d.l).style('fill','var(--fg)').style('font-family','var(--mono)').style('font-size','11.5px');
+ s2.append('line').attr('x1',x2(9240)).attr('x2',x2(9240)).attr('y1',m2.t-4).attr('y2',H2-m2.b).style('stroke','var(--brain)').style('stroke-dasharray','4 3');
+ s2.append('text').attr('x',x2(9240)-4).attr('y',H2-m2.b-6).attr('text-anchor','end').text('Eesti sünnid 2025: 9240').style('fill','var(--brain)').style('font-weight',600);
+})();
+
+/* 05 data */
+logBars('dataChart',[
+ {n:'Laps 13. eluaastaks',v:91e6,c:'brain',l:'≤91 mln'},
+ {n:'Noor 22. eluaastaks',v:99e6,c:'brain',l:'~100 mln (hinnang)',est:1},
+ {n:'Chinchilla (2022)',v:1.4e12,c:'ai',l:'1,4 trln (14 000×)'},
+ {n:'Llama 3 (2024)',v:11.25e12,c:'ai',l:'~11 trln (110 000×)'},
+ {n:'Llama 4 (2025)',v:22.5e12,c:'ai',l:'>22 trln (225 000×)'}
+],{dom:[1e7,1e14],tf:d=>d>=1e12?fmt(d/1e12)+' trln':d>=1e9?fmt(d/1e9)+' mld':fmt(d/1e6)+' mln',r:150,l:180});
+
+/* 06 opex dot plot */
+(function(){
+ const R=[
+  {n:'Inimene: aju',wh:40,eur:37.5,c:'brain',t:'2 h × 20 W'},
+  {n:'Inimene: keha',wh:174,eur:37.5,c:'brain',t:'2 h × 87 W'},
+  {n:'Inimene: kogu jalajälg',wh:10610,eur:37.5,c:'brain',t:'2 h × 5,3 kW; hind = palgakulu 2 h'},
+  {n:'GPT-4.1 nano',wh:0.77,eur:0.0005,c:'ai',t:'väike mudel; $0,40/mln väljund'},
+  {n:'GPT-4o',wh:1.62,eur:0.0116,c:'ai',t:'$10/mln väljund'},
+  {n:'Claude 3.7 Sonnet',wh:3.98,eur:0.0174,c:'ai',t:'$15/mln väljund'},
+  {n:'o3 (mõtlev)',wh:6.87,eur:0.0371,c:'ai',t:'$8/mln, ×4 mõttetokeneid (hinnang)'},
+  {n:'DeepSeek-R1 (mõtlev)',wh:32.8,eur:0.0102,c:'ai',t:'$2,19/mln, ×4 mõttetokeneid (hinnang); DeepSeeki serverid'}
+ ];
+ const W=760,rh=30,m={t:30,b:26,l:190,gap:56};const pw=(W-m.l-m.gap-28)/2;const H=m.t+m.b+R.length*rh;
+ const svg=svgIn('opexChart',W,H);
+ const panels=[{k:'wh',dom:[0.1,1e5],x0:m.l,ttl:'Energia',tf:d=>d>=1000?fmt(d/1000)+' kWh':fmt(d,d<1?1:0)+' Wh'},{k:'eur',dom:[1e-4,100],x0:m.l+pw+m.gap,ttl:'Hind',tf:d=>d<1?fmt(d*100,d<0.01?2:0)+' snt':fmt(d)+' €'}];
+ R.forEach((d,i)=>{const y=m.t+i*rh+rh/2;svg.append('text').attr('x',m.l-8).attr('y',y+4).attr('text-anchor','end').text(d.n).style('fill','var(--fg)');
+  svg.append('line').attr('x1',m.l).attr('x2',W-10).attr('y1',y).attr('y2',y).style('stroke','var(--soft)')});
+ panels.forEach(p=>{
+  const x=d3.scaleLog().domain(p.dom).range([p.x0,p.x0+pw]);
+  svg.append('text').attr('x',p.x0).attr('y',16).text(p.ttl).style('fill','var(--fg)').style('font-weight',700);
+  svg.append('g').attr('class','grid').selectAll('line').data(logTicks(...p.dom)).join('line').attr('x1',x).attr('x2',x).attr('y1',m.t-4).attr('y2',H-m.b);
+  svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(logTicks(...p.dom).filter((_,i)=>i%2===0)).tickSize(0).tickFormat(p.tf)).call(g=>g.select('.domain').remove());
+  R.forEach((d,i)=>{const y=m.t+i*rh+rh/2;
+   svg.append('circle').attr('cx',x(d[p.k])).attr('cy',y).attr('r',6.5).style('fill',C[d.c])
+    .on('mousemove',e=>showTip(e,`<b>${d.n}</b><br>${fmt(d.wh,d.wh<10?2:0)} Wh · ${d.eur<1?fmt(d.eur*100,2)+' senti':fmt(d.eur,1)+' €'}<br>${d.t}`)).on('mouseleave',hideTip);
+  });
+  if(p.k==='wh'){const xb=x(40);svg.append('line').attr('x1',xb).attr('x2',xb).attr('y1',m.t-4).attr('y2',H-m.b).style('stroke','var(--brain)').style('stroke-dasharray','3 3').style('opacity',.7);}
+ });
+})();
+
+/* 07 amortization */
+const HUM1000=282040/(40*1600)*2; // € per 1000 words
+const MOD=[{n:'GPT-4 (40 mln $)',c:40e6/1.15,o:.45},{n:'Grok 4 (490 mln $)',c:490e6/1.15,o:.7},{n:'Tippmudel 2026 (1,2 mld $, hinnang)',c:1.2e9/1.15,o:1}];
+document.getElementById('amLeg').innerHTML=MOD.map(d=>`<span><i style="background:color-mix(in srgb,var(--ai) ${d.o*100}%,var(--paper))"></i>${d.n}</span>`).join('')+`<span><i style="background:var(--brain)"></i>eestlase koolituskulu: ${fmt(HUM1000,1)} € / 1000 sõna</span>`;
+const GOOG_WPM=3.2e15*0.75/(30*24*60); // sõna minutis
+function drawAm(lw){
+ const W=760,H=330,m={t:16,r:44,b:40,l:70};const svg=svgIn('amChart',W,H);
+ const x=d3.scaleLog().domain([1e8,1e16]).range([m.l,W-m.r]);const y=d3.scaleLog().domain([1e-3,1e5]).range([H-m.b,m.t]);
+ svg.append('g').attr('class','grid').selectAll('line').data(logTicks(1e-3,1e5)).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y).attr('y2',y);
+ const yf=d=>d<0.01?fmt(d*100,1)+' snt':d<1?fmt(d*100)+' snt':nice(d)+' €';
+ svg.append('g').attr('class','ax').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).tickValues(logTicks(1e-2,1e5).filter((_,i)=>i%2===0)).tickSize(0).tickFormat(yf)).call(g=>g.select('.domain').remove());
+ svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(logTicks(1e8,1e16).filter((_,i)=>i%2===0)).tickSize(0).tickFormat(d=>d>=1e12?fmt(d/1e12)+' trln':nice(d))).call(g=>g.select('.domain').remove());
+ svg.append('text').attr('x',W-m.r).attr('y',H-6).attr('text-anchor','end').text('sõnu mudeli eluea jooksul →');
+ svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(HUM1000)).attr('y2',y(HUM1000)).style('stroke','var(--brain)').style('stroke-width',2.5);
+ svg.append('text').attr('x',W-m.r).attr('text-anchor','end').attr('y',y(HUM1000)-7).text('inimene: €8,8 / 1000 sõna').style('fill','var(--brain)').style('font-weight',600);
+ MOD.forEach(d=>{const pts=[1e8,Math.min(1e16,d.c*1000/1e-3)].map(w=>({w,v:d.c/w*1000}));
+  svg.append('path').datum(pts).attr('d',d3.line().x(p=>x(p.w)).y(p=>y(Math.max(1e-3,p.v)))).style('fill','none').style('stroke',`color-mix(in srgb,var(--ai) ${d.o*100}%,var(--paper))`).style('stroke-width',2.4);
+  const be=d.c*1000/HUM1000; svg.append('circle').attr('cx',x(be)).attr('cy',y(HUM1000)).attr('r',4.5).style('fill','var(--paper)').style('stroke','var(--ai)').style('stroke-width',2)
+   .on('mousemove',e=>showTip(e,`<b>${d.n}</b><br>tasuvuspunkt: ${nice(be)} sõna<br>≈ ${fmt(be/(64000*500))} inimese tööelu kirjutamist`)).on('mouseleave',hideTip);
+ });
+ const W0=10**lw; svg.append('line').attr('x1',x(W0)).attr('x2',x(W0)).attr('y1',m.t).attr('y2',H-m.b).style('stroke','var(--gold)').style('stroke-dasharray','4 3');
+ const top=MOD[2],v=top.c/W0*1000;svg.append('circle').attr('cx',x(W0)).attr('cy',y(Math.max(1e-3,v))).attr('r',6).style('fill','var(--gold)');
+ document.getElementById('amO').textContent=nice(W0);
+ const mins=W0/GOOG_WPM;const tt=mins<1?fmt(mins*60,mins*60<10?1:0)+' sekundit':mins<60?fmt(mins,mins<10?1:0)+' minutit':mins<1440?fmt(mins/60,1)+' tundi':fmt(mins/1440,1)+' päeva';
+ document.getElementById('amRead').innerHTML=`Kui 2026. aasta tippmudel toodab eluea jooksul <b>${nice(W0)}</b> sõna, on treeningkulu 1000 sõna kohta <b>${v<1?fmt(v*100,v<0.01?3:1)+' senti':fmt(v,v<100?1:0)+' €'}</b> (inimene: €${fmt(HUM1000,1)}). See maht on Google'i tokenivoos ~<b>${tt}</b>.`;
+}
+const amR=document.getElementById('amR');amR.addEventListener('input',()=>drawAm(+amR.value));drawAm(+amR.value);
+
+/* 08 trend */
+(function(){
+ const W=760,H=320,m={t:16,r:150,b:30,l:70};const svg=svgIn('trChart',W,H);
+ const pd=d3.timeParse('%Y-%m');
+ const x=d3.scaleTime().domain([pd('2021-01'),pd('2026-12')]).range([m.l,W-m.r]);const y=d3.scaleLog().domain([0.02,1e5]).range([H-m.b,m.t]);
+ svg.append('g').attr('class','grid').selectAll('line').data(logTicks(0.1,1e5)).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y).attr('y2',y);
+ svg.append('g').attr('class','ax').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).tickValues(logTicks(0.1,1e5)).tickSize(0).tickFormat(d=>d<1?fmt(d*100)+' snt':nice(d)+' €')).call(g=>g.select('.domain').remove());
+ svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).ticks(6).tickSize(0)).call(g=>g.select('.domain').remove());
+ const S=[
+  {n:'inimene',c:'var(--brain)',p:[['2021-06',1548*1.338/160*1500],['2026-05',2243*1.338/160*1500]],lab:'inimene ~€28 tuh'},
+  {n:'GPT-4 tase',c:'var(--ai)',p:[['2023-03',37.5/1.15],['2025-02',0.18/1.15]],lab:'GPT-4 tase: 16 snt'},
+  {n:'GPT-3 tase',c:'color-mix(in srgb,var(--ai) 50%,var(--paper))',p:[['2021-11',60/1.15],['2024-10',0.07/1.15]],lab:'GPT-3 tase: 6 snt'}
+ ];
+ S.forEach(s=>{const pts=s.p.map(([d,v])=>({d:pd(d),v}));
+  svg.append('path').datum(pts).attr('d',d3.line().x(p=>x(p.d)).y(p=>y(p.v))).style('fill','none').style('stroke',s.c).style('stroke-width',2.6);
+  svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx',p=>x(p.d)).attr('cy',p=>y(p.v)).attr('r',4.5).style('fill',s.c)
+   .on('mousemove',(e,p)=>showTip(e,`<b>${s.n}</b><br>${d3.timeFormat('%m.%Y')(p.d)}: ${p.v<1?fmt(p.v*100,1)+' senti':fmt(p.v,p.v<100?2:0)+' €'} / mln tokenit`)).on('mouseleave',hideTip);
+  const l=pts[pts.length-1];svg.append('text').attr('x',x(l.d)+8).attr('y',y(l.v)+4).text(s.lab).style('fill',s.c).style('font-weight',600);
+ });
+})();
+</script>
+<script data-goatcounter="https://margusrose.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
